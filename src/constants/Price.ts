@@ -1,0 +1,8 @@
+export const COACH_FILTER_MIN_PRICE = 50;
+export const COACH_FILTER_MAX_PRICE = 2000;
+
+export const COURSE_FILTER_MIN_PRICE = 0;
+export const COURSE_FILTER_MAX_PRICE = 2000;
+
+export const VENUE_FILTER_MIN_PRICE = 10;
+export const VENUE_FILTER_MAX_PRICE = 200;

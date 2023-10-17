@@ -1,0 +1,38 @@
+name: EAS Build
+on:
+  workflow_dispatch:
+    inputs:
+        profile:
+          type: choice
+          description: Profile
+          options:
+          - development
+          - preview
+          - test
+        platform:
+          type: choice
+          description: Platform
+          options:
+          - all
+          - android
+          - ios
+
+jobs:
+  build:
+    name: Install and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: yarn
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: LS9wKuxJdeOL7tZEov9nqQyTVivaHAEjCjqLa7tk
+      - name: Install dependencies
+        run: yarn
+      - name: Build on EAS
+        run: eas build --platform ${{ github.event.inputs.Platform }} --profile ${{ github.event.inputs.profile }} --non-interactive 
